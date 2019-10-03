@@ -15,6 +15,14 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/docker-compose'
   args: ['version']
 
+- id: "Rodando docker-compose"
+  name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
+  args: ['-f', 'docker-compose.cloudbuild.yaml', 'up', '-d']    
+  
+- id: "Rodando docker ps"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['ps']  
+
 images:
 - 'gcr.io/$PROJECT_ID/docker-compose:latest'
 - 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
